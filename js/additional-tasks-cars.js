@@ -207,55 +207,395 @@ const cars = [
 console.log('===================== PART #1 =====================');
 
 //Task 1
-//Знайти авто заданого кольору
+//Знайти усі спорткари
+
+console.log('Task #1');
+
+function getSportCarsArray(cars) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.isSportCar) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів типу спорткар`;
+    }
+
+    return result;
+}
+
+// console.table(getSportCarsArray(cars));
+
+//Task 2
+//Знайти авто 2022 року
+//Знайти всі авто, випущені в 2020 році
+
+console.log(' ');
+console.log('Task #2');
+
+function getCarsArrayByYear(cars, carYear) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.year === carYear) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів ${carYear} року випуску`;
+    }
+
+    return result;
+}
+
+// console.table(getCarsArrayByYear(cars, 2020));
+
+//Task 3
+//Знайти авто певної марки
+
+console.log(' ');
+console.log('Task #3');
+
+function getCarsArrayByBrand(cars, carBrand) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.brand.toLowerCase() === carBrand.toLowerCase()) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів марки ${carBrand}`;
+    }
+
+    return result;
+}
+
+// console.table(getCarsArrayByBrand(cars, 'Ford'));
+
+//Task 4
+//Знайти авто дорожче заданої ціни
+//Знайти всі авто, що мають ціну більше ніж 50000
+
+console.log(' ');
+console.log('Task #4');
+
+function getArrayCardBiggerPrice(cars, carPrice) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.price >= carPrice) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів дорожче за ${carPrice}$`;
+    }
+
+    return result;
+}
+
+// console.table(getArrayCardBiggerPrice(cars, @50000));
+
+//Task 5
+//Знайти авто заданого типу
+//Знайти всі авто типу 'SUV'
+//Знайти всі авто, які є седанами
+
+console.log(' ');
+console.log('Task #5');
+
+function getArrayCarsByType(cars, carType) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.type.toLowerCase() === carType.toLowerCase()) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів типу ${carType}`;
+    }
+
+    return result;
+}
+
+// console.table(getArrayCarsByType(cars, 'SUV'));
+
+//Task 6
+//Знайти авто з кількістю більше ніж задане значення
+//Знайти всі авто, що мають кількість більше 2
+
+console.log(' ');
+console.log('Task #6');
+
+function getArrayCarByBiggerAmount(cars, carAmount) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.amount >= carAmount) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів в кількості більше, ніж ${carAmount} одиниць`;
+    }
+
+    return result;
+}
+
+// console.table(getArrayCarByBiggerAmount(cars, 2));
+
+//Task 7
+//Знайти авто, випущені після 2018 року
+//Знайти всі авто, випущені після 2021 року
+
+console.log(' ');
+console.log('Task #7');
+
+function getCarsByAfterYear(cars, carYear) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.year > carYear) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів які були випущені після ${carYear} року`;
+    }
+
+    return result;
+}
+
+// console.table(getCarsByAfterYear(cars, 2021));
+
+//Task 8
+//Знайти авто, випущені до 2015 року
+//Знайти всі авто, випущені до 2017 року
+
+console.log(' ');
+console.log('Task #8');
+
+function getCarsByABeforeYear(cars, carYear) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.year < carYear) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів які були випущені до ${carYear} року`;
+    }
+
+    return result;
+}
+
+// console.table(getCarsByABeforeYear(cars, 2017));
+
+//Task 9
+//Знайти авто, ціна яких в межах від 20000 до 40000
+
+console.log(' ');
+console.log('Task #9');
+
+function getCarsInPriceRange(cars, minPrice, maxPrice) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.price >= minPrice && car.price <= maxPrice) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів у діапазоні вартістю від ${minPrice} до ${maxPrice}`;
+    }
+
+    return result;
+}
+
+// console.table(getCarsInPriceRange(cars, 20000, 40000));
+
+//Task 10
+//Знайти всі авто, які не є спортивними
+
+console.log(' ');
+console.log('Task #10');
+
+function getNotSportCarArray(cars) {
+    const result = [];
+
+    for (const car of cars) {
+        if (!car.isSportCar) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Усі автомобілі є спортивними`;
+    }
+
+    return result;
+}
+
+// console.table(getNotSportCarArray(cars));
+
+//Task 10
+//Знайти всі авто чорного кольору
+//Знайти всі авто червоного кольору
+//Знайти всі авто білого кольору
+
+console.log(' ');
+console.log('Task #10');
+
+function getArrarCarsByColor(cars, carColor) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.color.toLowerCase() === carColor.toLowerCase()) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів кольору ${carColor}`;
+    }
+
+    return result;
+}
+
+// console.table(getArrarCarsByColor(cars, 'white'));
+
+//Task 11
+//Знайти всі авто марки 'BMW'
+//Знайти всі авто марки 'Lexus'
+//Знайти всі авто марки 'Tesla'
+//Знайти всі авто марки 'Audi'
+//Знайти всі авто марки 'Mercedes'
+
+console.log(' ');
+console.log('Task #11');
+
+function getArrayCarsByBrand(cars, carBrand) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.brand.toLowerCase() === carBrand.toLowerCase()) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів марки ${carBrand}`;
+    }
+
+    return result;
+}
+
+// console.table(getArrayCarsByBrand(cars, 'Mercedes'));
+
+//Task 12
+//Знайти всі авто, які не є седанами
+
+console.log(' ');
+console.log('Task #12');
+
+function getCarsArrayWithoutIndicatedType(cars, carType) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.type.toLowerCase() !== carType.toLowerCase()) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `В наявності тільки автомобілі типу ${carType}`;
+    }
+
+    return result;
+}
+
+// console.table(getCarsArrayWithoutIndicatedType(cars, 'sedan'));
+
+//Task 13
+//Знайти всі авто, що мають ціну менше ніж 30000
+
+console.log(' ');
+console.log('Task #13');
+
+function getCarsArrayBySmallerPrice(cars, carPrice) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.price <= carPrice) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів ціною менше ${carPrice}$`;
+    }
+
+    return result;
+}
+
+// console.table(getCarsArrayBySmallerPrice(cars, 30000));
+
+//Task 14
+//Знайти всі авто, що мають кількість менше 5
+
+console.log(' ');
+console.log('Task #14');
+
+function getCarsArrayBySmallerAmount(cars, carAmount) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.amount <= carAmount) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        retur`Немає автомобілів кількістю менше ${carAmount} одиниць`;
+    }
+
+    return result;
+}
+
+// console.table(getCarsArrayBySmallerAmount(cars, 5));
+
+// ===================== PART #2 =====================
+
+console.log(' ');
+console.log('===================== PART #2 =====================');
+
+//Task 1
+//Порахувати кількість авто заданого року
 
 console.log('Task #1');
 
 /*
 
-Знайти усі спорткари
-Знайти авто 2022 року
-Знайти авто певної марки
-Знайти авто дорожче заданої ціни
-Знайти авто заданого типу
-Знайти авто з кількістю більше ніж задане значення
-Знайти авто, випущені після 2018 року
-Знайти авто, випущені до 2015 року
-Знайти авто, ціна яких в межах від 20000 до 40000
-Знайти всі авто, які не є спортивними
-Знайти всі авто чорного кольору
-Знайти всі автомобілі марки 'BMW'
-Знайти всі авто типу 'SUV'
-Знайти всі авто, що мають ціну менше ніж 30000
-Знайти всі авто, що мають ціну більше ніж 50000
-Знайти всі авто, випущені після 2021 року
-Знайти всі авто марки 'Audi'
-Знайти всі авто, що мають кількість більше 2
-Знайти всі авто червоного кольору
-Знайти всі авто, які є седанами
-Знайти всі авто марки 'Mercedes'
-Знайти всі авто, які не є седанами
-Знайти всі авто, випущені в 2020 році
-Знайти всі авто марки 'Tesla'
-Знайти всі авто, що мають кількість менше 5
-Знайти всі авто, що мають ціну більше ніж 25000
-Знайти всі авто марки 'Lexus'
-Знайти всі авто, випущені до 2017 року
-Знайти всі авто білого кольору */
-
-/*
-Порахувати кількість авто заданого року
-Знайти всі машини з ціною вище вказаної.
-Порахувати кількість машин вказаного року.
 Відсортувати машини за роком випуску (від найстарішого до найновішого).
 Знайти найдорожчу машину.
-Знайти всі машини заданої марки (наприклад, Toyota).
 Порахувати загальну кількість машин.
 Відсортувати машини за ціною (від найдешевшої до найдорожчої).
-Знайти всі машини певного типу (наприклад, SUV).
 Знайти всі машини певного кольору та року випуску.
 Порахувати середню ціну всіх машин.
-Знайти всі машини, у яких кількість на складі більша за 0.
 Знайти всі машини з ціною менше 30000 та роком випуску після 2020 року.
 Порахувати сумарну кількість всіх машин заданої марки.
 Відсортувати машини за кількістю на складі (від найбільшої до найменшої).

@@ -557,10 +557,13 @@ console.log('Task #13');
 
 function getUserByGenderAndAgeDiapason(users, userGender, minAge, maxAge) {
     const result = [];
-    userGender = userGender.toLowerCase();
 
     for (const user of users) {
-        if (user.gender.toLowerCase() === userGender && user.age >= minAge && user.age <= maxAge) {
+        if (
+            user.gender.toLowerCase() === userGender.toLowerCase() &&
+            user.age >= minAge &&
+            user.age <= maxAge
+        ) {
             result.push(user);
         }
     }
@@ -649,15 +652,15 @@ console.log(' ');
 console.log('Task #18');
 
 function getYoungerUser(users) {
-    let smallerAgeuser = users[0];
+    let smallerAgeUser = users[0];
 
     for (const user of users) {
-        if (user.age < smallerAgeuser.age) {
-            smallerAgeuser = user;
+        if (user.age < smallerAgeUser.age) {
+            smallerAgeUser = user;
         }
     }
 
-    return smallerAgeuser;
+    return smallerAgeUser;
 }
 
 // console.table(getYoungerUser(users));
@@ -734,4 +737,4 @@ function getActiveUserIndexByYearDiapason(users, userAge) {
     return -1;
 }
 
-console.log(getActiveUserIndexByYearDiapason(users, 40));
+// console.log(getActiveUserIndexByYearDiapason(users, 40));
