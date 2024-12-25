@@ -1,3 +1,5 @@
+'use strict';
+
 const users = [
     {
         firstName: 'Alice',
@@ -392,9 +394,11 @@ function getUsersByDomen(users, userDomen) {
 
         if (emailDomen === userDomen) {
             result.push(user);
-        } else {
-            return `Не існує пошти із доменом ${userDomen}`;
         }
+    }
+
+    if (!result.length) {
+        return `Не існує пошти із доменом ${userDomen}`;
     }
 
     return result;

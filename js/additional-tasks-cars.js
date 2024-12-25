@@ -588,29 +588,458 @@ console.log('===================== PART #2 =====================');
 
 console.log('Task #1');
 
-/*
+function getCountCarsByYear(cars, carYear) {
+    let count = 0;
 
-Відсортувати машини за роком випуску (від найстарішого до найновішого).
-Знайти найдорожчу машину.
-Порахувати загальну кількість машин.
-Відсортувати машини за ціною (від найдешевшої до найдорожчої).
-Знайти всі машини певного кольору та року випуску.
-Порахувати середню ціну всіх машин.
-Знайти всі машини з ціною менше 30000 та роком випуску після 2020 року.
-Порахувати сумарну кількість всіх машин заданої марки.
-Відсортувати машини за кількістю на складі (від найбільшої до найменшої).
-Знайти всі машини, які не є спортивними та доступні для продажу.
-Порахувати загальну вартість всіх машин складі.
-Знайти всі машини певного типу та кольору.
-Відсортувати машини за брендом та моделлю в алфавітному порядку.
-Перевірити, чи є хоч одна машина певного кольору.
-Перевірити, чи є хоч одна машина певного року.
-Перевірити, чи є всі авто є спроткарами.
-Перевірити, чи є всі новіші за вказаний рік.
-Створити новий масив, що містить лише назви моделей усіх машин.
-Створити масив, що містить розмітку кожної машини.
-Знайти індекс першої машини з роком випуску 2022 року.
-Сортувати за ціною */
+    for (const car of cars) {
+        if (car.year === carYear) {
+            count++;
+        }
+    }
+
+    return `Кількість автомоблів ${carYear} року скаладає ${count} одиниць`;
+}
+
+// console.table(getCountCarsByYear(cars, 2022));
+
+//Task 2
+//Відсортувати машини за роком випуску (від найстарішого до найновішого).
+
+console.log(' ');
+console.log('Task #2');
+
+function getFilterCarsArrayByYear(cars) {
+    for (let i = 0; i < cars.length; i++) {
+        for (let j = i + 1; j < cars.length; j++) {
+            if (cars[i].year > cars[j].year) {
+                [cars[i], cars[j]] = [cars[j], cars[i]];
+            }
+        }
+    }
+
+    return cars;
+}
+
+// console.table(getFilterCarsArrayByYear(cars));
+
+//Task 3
+//Знайти найдорожчу машину.
+
+console.log(' ');
+console.log('Task #3');
+
+function getMostExpensiveCar(cars) {
+    let mostExpensiveCar = cars[0];
+
+    for (const car of cars) {
+        if (car.price > mostExpensiveCar.price) {
+            mostExpensiveCar = car;
+        }
+    }
+
+    return mostExpensiveCar;
+}
+
+// console.table(getMostExpensiveCar(cars));
+
+//Task 4
+//Порахувати загальну кількість машин.
+
+console.log(' ');
+console.log('Task #4');
+
+function getTotalCountCars(cars) {
+    return `Загальна кількість машин становить ${cars.length} одиниць`;
+}
+
+// console.log(getTotalCountCars(cars));
+
+//Task 5
+//Відсортувати машини за ціною (від найдешевшої до найдорожчої).
+
+console.log(' ');
+console.log('Task #5');
+
+function getFilterCarsArrayByPrice(cars) {
+    for (let i = 0; i < cars.length; i++) {
+        for (let j = 0; j < cars.length; j++) {
+            if (cars[i].price < cars[j].price) {
+                [cars[i], cars[j]] = [cars[j], cars[i]];
+            }
+        }
+    }
+
+    return cars;
+}
+
+// console.table(getFilterCarsArrayByPrice(cars));
+
+//Task 6
+//Знайти всі машини певного кольору та року випуску.
+
+console.log(' ');
+console.log('Task #6');
+
+function getArrayCarsByColorAndYear(cars, carColor, carYear) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.color.toLowerCase() === carColor.toLowerCase() && car.year === carYear) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомоболів ${carYear} року із кольором ${carColor} `;
+    }
+
+    return result;
+}
+
+// console.table(getArrayCarsByColorAndYear(cars, 'red', 2020));
+
+//Task 7
+//Порахувати середню ціну всіх машин.
+
+console.log(' ');
+console.log('Task #7');
+
+function getAvCarsPrice(cars) {
+    let sum = 0;
+
+    for (const car of cars) {
+        sum += car.price;
+    }
+
+    const averagePrice = sum / cars.length;
+
+    return `Середня ціна всіх машин становить ${averagePrice}$`;
+}
+
+// console.log(getAvCarsPrice(cars));
+
+//Task 8
+//Знайти всі машини з ціною менше 30000 та роком випуску після 2020 року.
+
+console.log(' ');
+console.log('Task #8');
+
+function getArrayCarsByLessPriceAndAfterYear(cars, carPrice, carYear) {
+    const result = [];
+
+    for (const car of cars) {
+        if (car.price < carPrice && car.year > carYear) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів вартістю нижче ${carPrice}$ і роком випуску після ${carYear}`;
+    }
+
+    return result;
+}
+
+// console.table(getArrayCarsByLessPriceAndAfterYear(cars, 30000, 2020));
+
+//Task 9
+//Порахувати сумарну кількість всіх машин заданої марки.
+
+console.log(' ');
+console.log('Task #9');
+
+function getTotalCountCarsByBrand(cars, carBrand) {
+    let count = 0;
+
+    for (const car of cars) {
+        if (car.brand.toLowerCase() === carBrand.toLowerCase()) {
+            count++;
+        }
+    }
+
+    return `Кількість автомобілів марки ${carBrand} становить ${count} одиниць`;
+}
+
+// console.log(getTotalCountCarsByBrand(cars, 'skoda'));
+
+//Task 10
+//Відсортувати машини за кількістю на складі (від найбільшої до найменшої).
+
+console.log(' ');
+console.log('Task #10');
+
+function getFilterArrayCarsByAmount(cars) {
+    for (let i = 0; i < cars.length; i++) {
+        for (let j = 0; j < cars.length; j++) {
+            if (cars[i].amount > cars[j].amount) {
+                [cars[i], cars[j]] = [cars[j], cars[i]];
+            }
+        }
+    }
+
+    return cars;
+}
+
+// console.table(getFilterArrayCarsByAmount(cars));
+
+//Task 11
+//Знайти всі машини, які не є спортивними та доступні для продажу.
+
+console.log(' ');
+console.log('Task #11');
+
+function getArrayCarsByTypeAndAmount(cars, carType, carAmount) {
+    const result = [];
+
+    for (const car of cars) {
+        if (
+            !car.isSportCar &&
+            car.type.toLowerCase() === carType.toLowerCase() &&
+            car.amount >= carAmount
+        ) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає доступних автомобілів типу ${carType} для продажу`;
+    }
+
+    return result;
+}
+
+// console.table(getArrayCarsByTypeAndAmount(cars, 'sedan', 1));
+
+//Task 12
+//Порахувати загальну вартість всіх машин складі.
+
+console.log(' ');
+console.log('Task #12');
+
+function getTotalPriceAvailableCars(cars) {
+    let totalPrice = 0;
+
+    for (const car of cars) {
+        //перевірка на наявність машини на складі
+        if (car.amount) {
+            totalPrice += car.price;
+        }
+    }
+
+    return `Загальна вартість автомобілів на складі становить ${totalPrice}$`;
+}
+
+console.log(getTotalPriceAvailableCars(cars));
+
+//Task 13
+//Знайти всі машини певного типу та кольору.
+
+console.log(' ');
+console.log('Task #13');
+
+function getCarsByTypeAndColor(cars, carType, carColor) {
+    const result = [];
+
+    for (const car of cars) {
+        if (
+            car.type.toLowerCase() === carType.toLowerCase() &&
+            car.color.toLowerCase() === carColor.toLowerCase()
+        ) {
+            result.push(car);
+        }
+    }
+
+    if (!result.length) {
+        return `Немає автомобілів типу ${carType} з кольором ${carColor}`;
+    }
+
+    return result;
+}
+
+// console.table(getCarsByTypeAndColor(cars, 'suv', 'red'));
+
+//Task 14
+//Відсортувати машини за брендом та моделлю в алфавітному порядку.
+
+console.log(' ');
+console.log('Task #14');
+
+function getFilterCarsAlphabetByBrandAndModel(cars) {
+    for (let i = 0; i < cars.length; i++) {
+        for (let j = i + 1; j < cars.length; j++) {
+            const brandComprassion = cars[i].brand
+                .toLowerCase()
+                .localeCompare(cars[j].brand.toLowerCase());
+
+            const modelComprassion = cars[i].model
+                .toLowerCase()
+                .localeCompare(cars[j].model.toLowerCase());
+
+            if (brandComprassion > 0 || (brandComprassion === 0 && modelComprassion > 0)) {
+                [cars[i], cars[j]] = [cars[j], cars[i]];
+            }
+        }
+    }
+
+    return cars;
+}
+
+// console.table(getFilterCarsAlphabetByBrandAndModel(cars));
+
+//Task 15
+//Перевірити, чи є хоч одна машина певного кольору.
+
+console.log(' ');
+console.log('Task #15');
+
+function checkCarByColor(cars, carColor) {
+    for (const car of cars) {
+        if (car.color.toLowerCase() === carColor.toLowerCase()) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// console.log(checkCarByColor(cars, 'black'));
+
+//Task 15
+//Перевірити, чи є хоч одна машина певного року.
+
+console.log(' ');
+console.log('Task #15');
+
+function checkCarByYear(cars, carYear) {
+    for (const car of cars) {
+        if (car.year === carYear) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// console.log(checkCarByYear(cars, 2022));
+
+//Task 15
+//Перевірити, чи є всі авто є спроткарами.
+
+console.log(' ');
+console.log('Task #15');
+
+function getCarsBySportType(cars) {
+    for (const car of cars) {
+        if (!car.isSportCar) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// console.log(getCarsBySportType(cars));
+
+//Task 15
+//Перевірити, чи є всі новіші за вказаний рік.
+
+console.log(' ');
+console.log('Task #15');
+
+function checkCarByAfterYear(cars, carYear) {
+    for (const car of cars) {
+        if (car.year > carYear) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// console.log(checkCarByAfterYear(cars, 2024));
+
+//Task 16
+//Створити новий масив, що містить лише назви моделей усіх машин.
+
+console.log(' ');
+console.log('Task #16');
+
+function getCarsArrayByModel(cars) {
+    const result = [];
+
+    for (const car of cars) {
+        result.push(car.model);
+    }
+
+    return result;
+}
+
+// console.log(getCarsArrayByModel(cars, 2024));
+
+//Task 16
+//Створити масив, що містить розмітку кожної машини.
+
+console.log(' ');
+console.log('Task #16');
+
+function getCarsMarkup(cars) {
+    const result = [];
+
+    for (const car of cars) {
+        const markup = `
+            <h2>${car.brand} ${car.model}</h2>
+            <p>Year: ${car.year}</p>
+            <p>Color: ${car.color}</p>
+            <p>Price: ${car.price}</p>
+            <p>Amount: ${car.amount}</p>
+            <p>isSportCar: ${car.isSportCar}</p>
+            <p>Type: ${car.type}</p>`;
+
+        result.push(markup.trim());
+    }
+
+    return result;
+}
+
+// console.log(getCarsMarkup(cars)); дурня якась
+
+//Task 17
+//Знайти індекс першої машини з роком випуску 2022 року.
+
+console.log(' ');
+console.log('Task #17');
+
+function getIndexFirsCarByYear(cars, carYear) {
+    for (let i = 0; i < cars.length; i++) {
+        if (cars[i].year === carYear) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+// console.log(getIndexFirsCarByYear(cars, 2022));
+
+//Task 18
+//Сортувати за ціною
+
+console.log(' ');
+console.log('Task #18');
+
+function getFilterCarsByPrice(cars) {
+    for (let i = 0; i < cars.length; i++) {
+        for (let j = i + 0; j < cars.length; j++) {
+            if (cars[i].price > cars[j].price) {
+                [cars[i], cars[j]] = [cars[j], cars[i]];
+            }
+        }
+    }
+
+    return cars;
+}
+
+console.table(getFilterCarsByPrice(cars));
 
 /*
 Знайти всі машини з ціною вище 50000 і відсортувати їх за роком випуску від нових до старих.
