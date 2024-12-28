@@ -1001,7 +1001,7 @@ function getCarsMarkup(cars) {
     return result;
 }
 
-// console.log(getCarsMarkup(cars)); дурня якась
+// console.log(getCarsMarkup(cars));
 
 //Task 17
 //Знайти індекс першої машини з роком випуску 2022 року.
